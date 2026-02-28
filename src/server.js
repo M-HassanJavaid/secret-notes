@@ -27,7 +27,7 @@ app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
 
 app.get('/', (req, res) => {
-    res.send('HEllo from express')
+    res.send('Hello from express')
 });
 
 app.use('/api/v1/auth' , authRouter);
