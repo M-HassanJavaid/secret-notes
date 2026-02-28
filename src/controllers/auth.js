@@ -58,9 +58,9 @@ export async function signup(req, res) {
 
         res.cookie("authToken", authtoken, {
             maxAge: 7 * 24 * 60 * 60 * 1000,
-            // httpOnly: true,
-            // secure: true,          // REQUIRED in production (HTTPS)
-            // sameSite: "none",
+            httpOnly: true,
+            secure: true,          // REQUIRED in production (HTTPS)
+            sameSite: "none",
         });
 
 
@@ -117,9 +117,9 @@ export async function login(req, res) {
 
         res.cookie("authToken", token, {
             maxAge: 7 * 24 * 60 * 60 * 1000,
-            // httpOnly: true,
-            // secure: true,          // REQUIRED in production (HTTPS)
-            // sameSite: "none",
+            httpOnly: true,
+            secure: true,          // REQUIRED in production (HTTPS)
+            sameSite: "none",
         });
 
         user.toObject();
@@ -303,7 +303,10 @@ export async function verifyOtp(req , res) {
         } , process.env.JWT_SECRET , { expiresIn: '1d' });
 
         res.cookie('resetPasswordToken' , resetPasswordToken , {
-            maxAge: 1 * 24 * 60 * 60 * 1000
+            maxAge: 1 * 24 * 60 * 60 * 1000,
+            httpOnly: true,
+            secure: true,          // REQUIRED in production (HTTPS)
+            sameSite: "none",
         });
 
         res.status(200).json({
