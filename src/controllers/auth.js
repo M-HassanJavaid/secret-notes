@@ -51,7 +51,7 @@ export async function signup(req, res) {
             template: 'verificationEmail',
             context: {
                 name: savedUser.name,
-                verificationUrl: `http://localhost:8080/api/v1/auth/markVerify/${verificationToken}`,
+                verificationUrl: `https://secret-notes-mu.vercel.app/api/v1/auth/markVerify/${verificationToken}`,
                 year: new Date().getFullYear()
             }
         })
@@ -203,7 +203,7 @@ export async function resendVerificationMail(req, res) {
             template: 'verificationEmail',
             context: {
                 name: user.name,
-                verificationUrl: `http://localhost:8080/api/v1/auth/markVerify/${verificationToken}`,
+                verificationUrl: `https://secret-notes-mu.vercel.app/api/v1/auth/markVerify/${verificationToken}`,
                 year: new Date().getFullYear()
             }
         })
@@ -405,6 +405,21 @@ export async function getUser(req , res) {
     } catch (error) {
         res.status(500).json({
             isLogin: false
+        })
+    }
+}
+
+export async function getLogout(req , res) {
+    try {
+        res.clearCookie('authToken');
+        res.status(200).json({
+            success: true,
+            message: 'Logout successfully.'
+        })
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: error.message
         })
     }
 }

@@ -1,18 +1,18 @@
 import mongoose from "mongoose";
 
 const imageSchema = new mongoose.Schema({
-    
+
     id: {
         type: String,
         required: true
     },
 
-    url:{
+    url: {
         type: String,
-        required:true
+        required: true
     }
 
-} , {_id: false})
+}, { _id: false })
 
 const noteSchema = new mongoose.Schema({
 
@@ -28,7 +28,7 @@ const noteSchema = new mongoose.Schema({
         required: true
     },
 
-    text:{
+    text: {
         type: String,
         minLength: 10,
         maxLength: 1500,
@@ -37,9 +37,12 @@ const noteSchema = new mongoose.Schema({
 
     image: {
         type: imageSchema,
-        default: null
+        default: {
+            url: 'https://res.cloudinary.com/dxdijw7zr/image/upload/v1772435212/WhatsApp-Image-2024-02-23-at-6.35.55-PM-1_1_z229oc.jpg',
+            id: 'default'
+        }
     }
-});
+}, { timestamps: true });
 
-const Note = mongoose.model('Note' , noteSchema , 'notes');
+const Note = mongoose.model('Note', noteSchema, 'notes');
 export default Note;

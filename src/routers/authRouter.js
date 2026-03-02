@@ -1,5 +1,5 @@
 import express from 'express'
-import { changePassword, getUser, login, markUserVerify, resendVerificationMail, sentOtpForResetPass, signup, verifyOtp } from '../controllers/auth.js';
+import { changePassword, getLogout, getUser, login, markUserVerify, resendVerificationMail, sentOtpForResetPass, signup, verifyOtp } from '../controllers/auth.js';
 const authRouter = express.Router();
 // const checkAuth = require('../middlewares/authMiddleware.js');
 // const upload = require('../middlewares/upload.js');
@@ -13,7 +13,8 @@ authRouter.put('/resend-verification-email' , resendVerificationMail);
 authRouter.post('/otp-for-reset-password' , sentOtpForResetPass);
 authRouter.put('/verify-otp' , verifyOtp);
 authRouter.put('/change-password' , changePassword);
-authRouter.get('/getUser' , getUser)
+authRouter.get('/getUser' , getUser);
+authRouter.get('/logout' , getLogout)
 
 // authRouter.post('/login' , login);
 // authRouter.put('/GetVerificationEmail'  , sendVerificationEmail );
