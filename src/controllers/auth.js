@@ -247,9 +247,9 @@ export async function sentOtpForResetPass(req, res) {
         user.otp = hashedOtp;
         user.otpExpiry = expiryTimeOfOtp;
 
-        user.save();
+        await user.save();
 
-        sendEmail({
+        await sendEmail({
             to: user.email,
             subject: 'OTP to reset your account password',
             template: 'passwordReset',

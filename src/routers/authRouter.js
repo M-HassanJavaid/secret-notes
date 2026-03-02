@@ -9,7 +9,7 @@ const authRouter = express.Router();
 authRouter.post('/signup' , signup);
 authRouter.post('/login' , login);
 authRouter.get('/markVerify/:token' , markUserVerify);
-authRouter.put('/resend-verification-email' , resendVerificationMail);
+authRouter.get('/resend-verification-email' , resendVerificationMail);
 authRouter.post('/otp-for-reset-password' , sentOtpForResetPass);
 authRouter.put('/verify-otp' , verifyOtp);
 authRouter.put('/change-password' , changePassword);
