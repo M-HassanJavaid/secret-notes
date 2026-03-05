@@ -3,6 +3,7 @@ import bcrypt from 'bcrypt'
 import dotenv from 'dotenv';
 import jwt from 'jsonwebtoken'
 import sendEmail from '../utils/sendMail.js';
+import path from 'path';
 dotenv.config();
 
 export async function signup(req, res) {
@@ -61,6 +62,7 @@ export async function signup(req, res) {
             httpOnly: true,
             secure: true,          // REQUIRED in production (HTTPS)
             sameSite: "none",
+            path: '/'
         });
 
 
@@ -120,6 +122,7 @@ export async function login(req, res) {
             httpOnly: true,
             secure: true,          // REQUIRED in production (HTTPS)
             sameSite: "none",
+            path: '/'
         });
 
         user.toObject();
@@ -307,6 +310,7 @@ export async function verifyOtp(req , res) {
             httpOnly: true,
             secure: true,          // REQUIRED in production (HTTPS)
             sameSite: "none",
+            path: '/'
         });
 
         res.status(200).json({
@@ -360,12 +364,14 @@ export async function changePassword(req , res) {
         res.clearCookie('resetPasswordToken', {
             httpOnly: true,
             secure: true,          // REQUIRED in production (HTTPS)
-            sameSite: "none"
+            sameSite: "none",
+            path: '/'
         });
         res.clearCookie('authToken', {
             httpOnly: true,
             secure: true,          // REQUIRED in production (HTTPS)
-            sameSite: "none"
+            sameSite: "none",
+            path: '/'
         });
 
         res.status(200).json({
@@ -419,17 +425,18 @@ export async function getUser(req , res) {
 
 export async function getLogout(req , res) {
     try {
-        console.log(req.cookies.authToken);
         res.clearCookie('authToken' , {
             httpOnly: true,
             secure: true,          // REQUIRED in production (HTTPS)
-            sameSite: "none"
+            sameSite: "none",
+            path: '/'
         });
 
         res.clearCookie('resetPasswordToken' , {
             httpOnly: true,
             secure: true,          // REQUIRED in production (HTTPS)
-            sameSite: "none"
+            sameSite: "none",
+            path: '/'
         });
         res.status(200).json({
             success: true,
