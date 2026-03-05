@@ -357,8 +357,16 @@ export async function changePassword(req , res) {
         user.otpExpiry = null;
         user.save();
 
-        res.clearCookie('resetPasswordToken');
-        res.clearCookie('authToken');
+        res.clearCookie('resetPasswordToken', {
+            httpOnly: true,
+            secure: true,          // REQUIRED in production (HTTPS)
+            sameSite: "none"
+        });
+        res.clearCookie('authToken', {
+            httpOnly: true,
+            secure: true,          // REQUIRED in production (HTTPS)
+            sameSite: "none"
+        });
 
         res.status(200).json({
             success: true,
@@ -412,9 +420,16 @@ export async function getUser(req , res) {
 export async function getLogout(req , res) {
     try {
         console.log(req.cookies.authToken);
-        res.clearCookie('authToken', {
-            // httpOnly: true,
-            // sameSite: 'none'
+        res.clearCookie('authToken' , {
+            httpOnly: true,
+            secure: true,          // REQUIRED in production (HTTPS)
+            sameSite: "none"
+        });
+
+        res.clearCookie('resetPasswordToken' , {
+            httpOnly: true,
+            secure: true,          // REQUIRED in production (HTTPS)
+            sameSite: "none"
         });
         res.status(200).json({
             success: true,
