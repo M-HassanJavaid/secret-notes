@@ -24,7 +24,7 @@ export async function createNote(req, res) {
         return res.status(201).json({ success: true, message: "Note created", note: savedNote });
     } catch (err) {
         console.error(err.message);
-        res.status(500).json({ success: false, message: "Server error" });
+        res.status(500).json({ success: false, message: err.message });
     }
 }
 
