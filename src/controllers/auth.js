@@ -58,7 +58,7 @@ export async function signup(req, res) {
 
         res.cookie("authToken", authtoken, {
             maxAge: 7 * 24 * 60 * 60 * 1000,
-            httpOnly: true,
+            // httpOnly: true,
             secure: true,          // REQUIRED in production (HTTPS)
             sameSite: "none",
         });
@@ -117,7 +117,7 @@ export async function login(req, res) {
 
         res.cookie("authToken", token, {
             maxAge: 7 * 24 * 60 * 60 * 1000,
-            httpOnly: true,
+            // httpOnly: true,
             secure: true,          // REQUIRED in production (HTTPS)
             sameSite: "none",
         });
@@ -304,7 +304,7 @@ export async function verifyOtp(req , res) {
 
         res.cookie('resetPasswordToken' , resetPasswordToken , {
             maxAge: 1 * 24 * 60 * 60 * 1000,
-            httpOnly: true,
+            // httpOnly: true,
             secure: true,          // REQUIRED in production (HTTPS)
             sameSite: "none",
         });
@@ -358,12 +358,12 @@ export async function changePassword(req , res) {
         user.save();
 
         res.clearCookie('resetPasswordToken', {
-            httpOnly: true,
+            // httpOnly: true,
             secure: true,          // REQUIRED in production (HTTPS)
             sameSite: "none",
         });
         res.clearCookie('authToken', {
-            httpOnly: true,
+            // httpOnly: true,
             secure: true,          // REQUIRED in production (HTTPS)
             sameSite: "none",
         });
@@ -420,13 +420,13 @@ export async function getUser(req , res) {
 export async function getLogout(req , res) {
     try {
         res.clearCookie('authToken' , {
-            httpOnly: true,
+            // httpOnly: true,
             secure: true,          // REQUIRED in production (HTTPS)
             sameSite: "none",
         });
 
         res.clearCookie('resetPasswordToken' , {
-            httpOnly: true,
+            // httpOnly: true,
             secure: true,          // REQUIRED in production (HTTPS)
             sameSite: "none",
         });
