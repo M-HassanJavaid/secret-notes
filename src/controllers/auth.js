@@ -411,9 +411,10 @@ export async function getUser(req , res) {
 
 export async function getLogout(req , res) {
     try {
+        console.log(req.cookies.authToken);
         res.clearCookie('authToken', {
-            httpOnly: true,
-            sameSite: 'none'
+            // httpOnly: true,
+            // sameSite: 'none'
         });
         res.status(200).json({
             success: true,
